@@ -8,3 +8,9 @@ a los clientes, que eventualmente los devuelven.
 
 El problema es poder controlar lo que tiene de cada tipo en cada sede y validar
 las posibles devoluciones de los clientes.
+
+## Planificación del proyecto
+
++ [User Stories](/docs/user_stories.md)
++ [User Journeys](/docs/user_journeys.md)
++ [Milestones](/docs/milestones.md)
