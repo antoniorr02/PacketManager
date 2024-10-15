@@ -62,6 +62,16 @@ func (s *Sede) VerificarDisponibilidad(tipo string, cantidad int) bool {
 	return false
 }
 
+// Método para procesar el pedido y confirmar disponibilidad de palets
+func (p *Pedido) ConfirmarPedido() {
+	if p.Encargado.EsEncargado() {
+		p.Estado = "Confirmado"
+		fmt.Printf("Pedido confirmado para el cliente %s por el encargado %s.\n", p.Cliente.Nombre, p.Encargado.Nombre)
+	} else {
+		fmt.Printf("Error: %s no es un encargado y no puede gestionar el pedido.\n", p.Encargado.Nombre)
+	}
+}
+
 // Método para validar los palets devueltos y registrar la devolución
 func (d *Devolucion) ValidarDevolucion() {
 	fmt.Printf("Validando la devolución realizada por %s:\n", d.Cliente.Nombre)
@@ -100,6 +110,57 @@ func ConfirmarDevolucion(devolucion *Devolucion, pedido *Pedido, administrativo 
 }
 
 func main() {
-	name := "mundo"
-	fmt.Println("Hola", name)
+	// Creación de usuarios
+	cliente := &Usuario{Nombre: "Juan Pérez", DNI: "12345678A", Telefono: "555-1234", Rol: "usuario"}
+	encargado := &Usuario{Nombre: "Ana Gómez", DNI: "87654321B", Telefono: "555-5678", Rol: "encargado"}
+	administrativo := &Usuario{Nombre: "Luis López", DNI: "11223344C", Telefono: "555-9101", Rol: "administrativo"}
+	transportista := &Usuario{Nombre: "Carlos Ruiz", DNI: "99887766D", Telefono: "555-1213", Rol: "transportista"}
+
+	// Creación de sedes
+	sede := &Sede{
+		ID:     1,
+		Nombre: "Sede Central",
+		Stock: map[string]*Palet{
+			"palet_nuevo": {Tipo: "palet_nuevo", Cantidad: 20, Estado: "nuevo"},
+		},
+	}
+
+	// Verificación de disponibilidad de palets
+	tipoPalet := "palet_nuevo"
+	cantidad := 5
+	if sede.VerificarDisponibilidad(tipoPalet, cantidad) {
+		fmt.Printf("Disponibilidad confirmada para %d palets de tipo %s en %s.\n", cantidad, tipoPalet, sede.Nombre)
+	} else {
+		fmt.Printf("No hay suficiente stock de %s en %s.\n", tipoPalet, sede.Nombre)
+	}
+
+	// Creación de un pedido
+	pedido := &Pedido{
+		Cliente:   cliente,
+		Encargado: encargado,
+		Palets:    []*Palet{{Tipo: "palet_nuevo", Cantidad: 5, Estado: "nuevo"}},
+		Estado:    "Pendiente",
+		Id:        1,
+		Factura:   50.0,
+	}
+
+	pedido.ConfirmarPedido()
+
+	// Validación de la devolución
+	devolucion := &Devolucion{
+		Cliente:       cliente,
+		Transportista: transportista,
+		Palets: []*Palet{
+			{Tipo: "palet_nuevo", Cantidad: 2, Estado: "nuevo"},
+			{Tipo: "palet_usado", Cantidad: 1, Estado: "usado"},
+			{Tipo: "palet_dañado", Cantidad: 1, Estado: "dañado"},
+		},
+		PedidoID: 1,
+	}
+
+	// Validar y mostrar compensación de la devolución
+	devolucion.ValidarDevolucion()
+
+	// Confirmar la devolución
+	ConfirmarDevolucion(devolucion, pedido, administrativo)
 }
