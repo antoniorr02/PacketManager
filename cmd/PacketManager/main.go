@@ -1,48 +1,8 @@
 package main
 
-import "fmt"
-
-// Definición de la entidad Usuario con diferentes roles
-type Usuario struct {
-	Nombre   string // Nombre del usuario
-	DNI      string // DNI como identificador único del usuario
-	Telefono string // Número de teléfono del usuario
-	Rol      string // Rol ya sea usuario, encargado, administrador o transportista.
-}
-
-// Palet representa un tipo de palet con una cantidad específica
-type Palet struct {
-	Tipo     string
-	Cantidad int
-	Estado   string // Estado del palet
-}
-
-// Sede representa una sede de UPalet con un stock de palets
-type Sede struct {
-	ID     int               // ID único de la sede
-	Nombre string            // Nombre de la sede
-	Stock  map[string]*Palet // Mapa de stock de palets, con el tipo como clave
-}
-
-// Pedido representa un pedido de un cliente, gestionado por un encargado
-type Pedido struct {
-	Cliente   *Usuario
-	Encargado *Usuario // Se deberá de comprobar que realmente se trata de un encargado al crear el pedido.
-	Palets    []*Palet
-	Estado    string  // Estados posibles: Pendiente, Confirmado, Entregado, Cancelado.
-	Id        int     // Identificador para posibles devoluciones o seguimiento del pedido.
-	Factura   float64 // Coste del pedido
-}
-
-// Devolución representa una devolución realizada por un cliente
-type Devolucion struct {
-	Cliente       *Usuario
-	Transportista *Usuario
-	Palets        []*Palet
-	Compensacion  float64
-	Confirmada    bool // Si la devolución fue confirmada por el administrativo
-	PedidoID      int  // Asociar devolución con un pedido específico
-}
+import (
+	"fmt"
+)
 
 // Método para verificar si el usuario es un encargado
 func (u *Usuario) EsEncargado() bool {
