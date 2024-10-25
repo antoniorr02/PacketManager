@@ -1,2 +1,6 @@
 lenguaje: go
-entidad: main.go
+entidad: devolucion.go
+entidad: palet.go
+entidad: pedido.go
+entidad: sede.go
+entidad: usuario.go

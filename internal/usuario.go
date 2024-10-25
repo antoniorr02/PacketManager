@@ -4,9 +4,9 @@ type TipoUsuario string
 
 const (
 	Cliente       TipoUsuario = "cliente"
-	Encargado     TipoUsuario = "encargado"
-	Administrador TipoUsuario = "administrador"
-	Transportista TipoUsuario = "transportista"
+	Encargado                 = "encargado"
+	Administrador             = "administrador"
+	Transportista             = "transportista"
 )
 
 type Usuario struct {
