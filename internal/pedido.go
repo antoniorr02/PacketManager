@@ -11,8 +11,8 @@ const (
 
 // Pedido representa un pedido de un cliente, gestionado por un encargado
 type Pedido struct {
-	Cliente   *Usuario
-	Encargado *Usuario // Se deberá de comprobar que realmente se trata de un encargado al crear el pedido.
+	cliente   Usuario
+	encargado Usuario // Se deberá de comprobar que realmente se trata de un encargado al crear el pedido.
 	Pedido    map[TipoPalet]int
 	Estado    EstadoPedido
 	Id        int     // Identificador para posibles devoluciones o seguimiento del pedido.

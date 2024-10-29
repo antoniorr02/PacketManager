@@ -10,8 +10,8 @@ const (
 
 // Devolución representa una devolución realizada por un cliente
 type Devolucion struct {
-	Cliente       *Usuario
-	Transportista *Usuario
+	cliente       Usuario
+	transportista Usuario
 	Devolucion    map[TipoPalet]map[EstadoDevolucion]int
 	Compensacion  float64
 	Confirmada    bool // Si la devolución fue confirmada por el administrativo
