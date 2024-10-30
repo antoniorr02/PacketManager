@@ -1,6 +1,5 @@
 package internal
 
-// Distintos tipos de palets disponibles
 type TipoPalet int
 
 const (

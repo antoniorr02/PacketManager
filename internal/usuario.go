@@ -10,8 +10,8 @@ const (
 )
 
 type Usuario struct {
-	Nombre   string      // Nombre del usuario
-	dni      string      // DNI como identificador único del usuario
-	Telefono string      // Número de teléfono del usuario
-	Rol      TipoUsuario // Rol ya sea cliente, encargado, administrador o transportista.
+	Nombre   string
+	dni      string
+	Telefono string
+	Rol      TipoUsuario
 }
