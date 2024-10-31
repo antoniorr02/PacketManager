@@ -1,3 +1,4 @@
 lenguaje: go
 entidad: internal/usuario.go
 entidad: internal/sede.go
+entidad: internal/pedido.go
