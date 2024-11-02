@@ -10,7 +10,7 @@ const (
 )
 
 type Usuario struct {
-	dni      string
+	id       int
 	Telefono string
 	Rol      TipoUsuario
 }
