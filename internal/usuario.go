@@ -10,7 +10,6 @@ const (
 )
 
 type Usuario struct {
-	Nombre   string
 	dni      string
 	Telefono string
 	Rol      TipoUsuario
