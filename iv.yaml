@@ -1,0 +1,6 @@
+lenguaje: go
+entidad: 
+- internal/usuario.go
+- internal/sede.go
+- internal/pedido.go
+- internal/devolucion.go
